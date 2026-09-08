@@ -1,0 +1,17 @@
+---
+- name: "Manage Web App | Ensure target exists"
+  ansible.builtin.file:
+    path: "/var/www/html"
+    state: directory
+    mode: '0755'
+    owner: www-data
+    group: www-data
+
+- name: "Manage Web App | Deploy Application"
+  ansible.builtin.copy:
+    src: "index.html"
+    dest: "/var/www/html/index.html"
+    mode: '0644'
+    owner: www-data
+    group: www-data
+  notify: Restart Nginx

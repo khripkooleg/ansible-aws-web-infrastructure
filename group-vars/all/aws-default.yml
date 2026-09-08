@@ -1,0 +1,8 @@
+aws_region: "eu-north-1"
+aws_profile: default
+aws_workshop_destroy: false
+aws_default_tags:
+  Owner: "KhripkoOleh"
+  Email: "olegdelower@gmail.com"
+  Purpose: "Deploy a Web-Stack Microservice"
+

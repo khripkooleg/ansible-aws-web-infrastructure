@@ -1,0 +1,43 @@
+---
+- name: "Manage Web App | Handle Packet Management"
+  ansible.builtin.package:
+    name:
+      - curl
+      - unzip
+      - git
+      - ca-certificates
+    state: present
+    update_cache: yes
+
+- name: "Manage Web App | Install Core Services"
+  ansible.builtin.package:
+    name:
+      - nginx
+      - python3
+      - python3-pip
+    state: present
+    update_cache: yes
+
+- name: "Manage Web App | Install AWS Libraries"
+  ansible.builtin.pip:
+    name:
+      - boto3
+      - botocore
+    state: present
+
+- name: "Manage Web App | Install AWS CLI"
+  ansible.builtin.get_url:
+    url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+    dest: "/tmp/awscliv2.zip"
+    mode: '0644'
+
+- name: "Manage Web App | Unarchive AWS CLI Installer"
+  ansible.builtin.unarchive:
+    src: "/tmp/awscliv2.zip"
+    dest: "/tmp"
+    remote_src: yes
+
+- name: "Manage Web App | Run AWS CLI v2 Install Script"
+  ansible.builtin.command:
+    cmd: "/tmp/aws/install --update"
+    creates: "/usr/local/bin/aws"

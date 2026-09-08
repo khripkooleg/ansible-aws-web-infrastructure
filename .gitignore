@@ -1,0 +1,10 @@
+*.pem
+*.pub
+*.key
+aws_credentials
+.env
+
+*.retry
+*.log
+.ansible/
+.ansible-entry/

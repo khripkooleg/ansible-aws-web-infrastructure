@@ -1,0 +1,23 @@
+---
+- name: "Manage AWS Infrastructure | AWS VPC Network"
+  amazon.aws.ec2_vpc_net:
+    name: "{{ aws_vpc_name }}"
+    cidr_block: "{{ aws_vpc_cidr_block }}"
+    region: "{{ aws_region }}"
+    tags: "{{ aws_default_tags }}"
+    state: present
+  register: aws_vpc_info
+
+- name: "Manage AWS Infrastructure | AWS VPC IGW"
+  amazon.aws.ec2_vpc_igw:
+    vpc_id: "{{ aws_vpc_info.vpc.id }}"
+    state: present
+  register: aws_vpc_igw_info
+
+- name: "Mange AWS Infrastructure | AWS Route Table"
+  amazon.aws.ec2_vpc_route_table:
+    vpc_id: "{{ aws_vpc_info.vpc.id }}"
+    tags: "{{ aws_default_tags }}"
+    gateway_id: "{{ aws_vpc_igw_info.gateway_id }}"
+    state: present
+  register: aws_vpc_rt
