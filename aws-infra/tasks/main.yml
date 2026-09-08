@@ -1,0 +1,13 @@
+---
+- name: "Deploy Web Stack AWS Infrastructure"
+  ansible.builtin.include_tasks: "{{ item }}"
+  loop:
+    - "aws-vpc.yml"
+    - "aws-sub.yml"
+    - "aws-sg.yml"
+    - "aws-ami.yml"
+    - "aws-iam.yml"
+    - "aws-s3.yml"
+    - "aws-ec2-key.yml"
+    - "aws-ec2.yml"
+  when: not ( aws_workshop_destroy | default(false) | bool )
