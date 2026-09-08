@@ -7,11 +7,22 @@
     owner: www-data
     group: www-data
 
-- name: "Manage Web App | Deploy Application"
-  ansible.builtin.copy:
-    src: "index.html"
-    dest: "/var/www/html/index.html"
-    mode: '0644'
-    owner: www-data
-    group: www-data
+- name: "Manage Web App | Ensure AWS CLI Is Available For S3 Sync"
+  ansible.builtin.apt:
+    name: awscli
+    state: present
+
+- name: "Manage Web App | Seed S3 Bucket From Local Files"
+  ansible.builtin.shell: "aws s3 sync {{ role_path }}/files/ s3://{{ aws_s3_bucket_name }}/"
+  delegate_to: localhost
+  become: false
+  run_once: true
+  register: s3_upload
+  changed_when: "'upload:' in s3_upload.stdout"
+
+- name: "Manage Web App | Sync Website Files From S3 Bucket To Web Root"
+  ansible.builtin.shell: "aws s3 sync s3://{{ aws_s3_bucket_name }} /var/www/html --delete"
+  register: s3_sync
+  changed_when: "'download:' in s3_sync.stdout"
   notify: Restart Nginx
+
