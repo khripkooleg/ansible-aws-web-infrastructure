@@ -1,0 +1,8 @@
+---
+- name: "Configure Web Application OS"
+  ansible.builtin.include_tasks: "{{ item }}"
+  loop:
+    - "install.yml"
+    - "configure.yml"
+    - "service.yml"
+    - "verify.yml"

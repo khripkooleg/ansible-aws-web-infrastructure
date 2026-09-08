@@ -1,0 +1,10 @@
+---
+- name: "Manage Web App | Verify Web Server Response"
+  ansible.builtin.uri:
+    url: "http://localhost:80"
+    status_code: 200
+  register: web_response
+
+- name: "Manage Web App | Confirm Verification Success"
+  ansible.builtin.debug:
+    msg: "Web Server is healthy!"
