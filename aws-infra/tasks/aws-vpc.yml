@@ -13,11 +13,3 @@
     vpc_id: "{{ aws_vpc_info.vpc.id }}"
     state: present
   register: aws_vpc_igw_info
-
-- name: "Mange AWS Infrastructure | AWS Route Table"
-  amazon.aws.ec2_vpc_route_table:
-    vpc_id: "{{ aws_vpc_info.vpc.id }}"
-    tags: "{{ aws_default_tags }}"
-    gateway_id: "{{ aws_vpc_igw_info.gateway_id }}"
-    state: present
-  register: aws_vpc_rt

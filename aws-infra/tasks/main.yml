@@ -4,6 +4,7 @@
   loop:
     - "aws-vpc.yml"
     - "aws-sub.yml"
+    - "aws-rt.yml"
     - "aws-sg.yml"
     - "aws-ami.yml"
     - "aws-iam.yml"

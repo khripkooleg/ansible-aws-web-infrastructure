@@ -1,15 +1,13 @@
 ---
-- name: "Manage AWS Infrastructure | Generate EC2 Key Pair"
+- name: "Manage AWS Infrastructure | Generate Local SSH Key Pair"
+  community.crypto.openssh_keypair:
+    path: "~/.ssh/ec2-key-pair"
+    type: ed25519
+  register: local_keypair
+
+- name: "Manage AWS Infrastructure | Import Public Key To AWS"
   amazon.aws.ec2_key:
     name: "{{ aws_ec2_key_name }}"
     region: "{{ aws_region }}"
+    key_material: "{{ local_keypair.public_key }}"
     state: present
-    key_type: "{{ aws_ec2_key_type | default('rsa') }}"
-  register: aws_key
-
-- name: "Manage AWS Infrastructure | Copy EC2 Key Pair"
-  ansible.builtin.copy:
-    content: "{{ aws_key.key.private.key }}"
-    dest: "~/.ssh/ec2-key-pair.pem"
-    mode: "0600"
-  when: aws_key.changed
