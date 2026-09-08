@@ -1,3 +1,0 @@
-aws_s3_bucket_name: "web-stack-s3-bucket"
-aws_s3_bucket_versioning: true
-aws_s3_bucket_encryption: "AES256"

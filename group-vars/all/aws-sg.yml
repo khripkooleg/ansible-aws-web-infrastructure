@@ -1,4 +1,0 @@
-aws_sg_name: "web-stack-instance-security-group"
-aws_sg_description: "Allow HTTP(S) & SSH Connection"
-aws_default_sg_tags:
-  Name: "sg-web-stack"

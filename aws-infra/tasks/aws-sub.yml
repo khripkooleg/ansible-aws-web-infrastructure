@@ -1,8 +1,0 @@
----
-- name: "Manage AWS Infrastructure | Subnets"
-  amazon.aws.ec2_vpc_subnet:
-    state: present
-    vpc_id: "{{ aws_vpc_info.vpc.id }}"
-    cidr: "{{ aws_vpc_subnet_cidr }}"
-    tags: "{{ aws_default_tags | combine ( aws_vpc_subnet_tags ) }}"
-  register: aws_subnet
