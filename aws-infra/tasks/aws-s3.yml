@@ -6,7 +6,7 @@
     name: "{{ aws_s3_bucket_name }}"
     versioning: "{{ aws_s3_bucket_versioning | default('true') }}"
     region: "{{ aws_region }}"
-    encryption: "{{ aws_s3_bucket_encryption | deafult('AES256') }}"
+    encryption: "{{ aws_s3_bucket_encryption | default('AES256') }}"
     public_access:
       block_public_acls: true
       ignore_public_acls: true

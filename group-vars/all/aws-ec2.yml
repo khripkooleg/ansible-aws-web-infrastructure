@@ -2,8 +2,8 @@ aws_ec2_key_name: "web-stack-key"
 aws_ec2_key_type: rsa
 
 aws_ec2_name: "web-stack-ansible-instance"
-aws_instance_type: "t3.micro"
-aws_volumes:
+aws_ec2_instance_type: "t3.micro"
+aws_ec2_instances_volumes:
   - device_name: /dev/sdb
     ebs:
       volume_type: gp3

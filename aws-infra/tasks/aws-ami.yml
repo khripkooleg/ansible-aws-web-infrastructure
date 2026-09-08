@@ -11,4 +11,4 @@
 
 - name: "Manage AWS Infrastructure | Save the latest AMI ID"
   ansible.builtin.set_fact:
-    latest_ubuntu_ami_id: "{{ ubuntu_ami.images | sort(attribute='creation_date') | last).image_id }}"
+    latest_ubuntu_ami_id: "{{ ( ubuntu_ami.images | sort(attribute='creation_date') | last ).image_id }}"

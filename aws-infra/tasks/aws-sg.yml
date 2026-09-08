@@ -1,6 +1,6 @@
 ---
 - name: "Manage AWS Infrastructure | Security Groups"
-  amazon.aws_ec2_security_group:
+  amazon.aws.ec2_security_group:
     name: "{{ aws_sg_name }}"
     description: "{{ aws_sg_description }}"
     vpc_id: "{{ aws_vpc_info.vpc.id }}"
@@ -15,6 +15,6 @@
       - proto: "tcp"
         ports:
           - 22
-        cidr_ip: "10.0.1.0/24"
+        cidr_ip: "0.0.0.0/24"
         rule_desc: "Allow SSH."
     state: present
