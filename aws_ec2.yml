@@ -1,0 +1,10 @@
+plugin: amazon.aws.aws_ec2
+regions:
+  - eu-north-1
+profile: default
+filters:
+  tag:Name: "web-stack-ansible-instance"
+  instance-state-name: [running]
+keyed_groups:
+  - key: tags.Name
+    prefix: tag

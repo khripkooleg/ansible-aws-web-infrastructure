@@ -1,0 +1,12 @@
+---
+- name: "Install Prometheus"
+  ansible.builtin.package:
+    name: prometheus-node-exporter
+    state: present
+    update_cache: yes
+
+- name: "Ensure Prometheus is Running"
+  ansible.builtin.service:
+    name: prometheus-node-exporter
+    state: started
+    enabled: true
