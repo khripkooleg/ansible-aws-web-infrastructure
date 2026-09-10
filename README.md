@@ -37,3 +37,6 @@ An Infrastructure as Code solution utilizing Ansible and the **amazon.aws** coll
 # Execution
 To run full end-to-end deployement pipeline from the control node:
 `ansible-playbook playbook.yml`
+
+## Additional features
+- Inside branch `feature` deployed and configured Prometheus + Grafana monitoring stack with real-time metrics visualiztion dashboards.
